@@ -10,9 +10,9 @@ A = imread('homework.png');
 y = (A(99,:))
 x = 1:length(y);
 figure;
-plot(x,y)
-xlabel('column index (n)')
-ylabel('pixel value 0-255')
+%plot(x,y)
+%xlabel('column index (n)')
+%ylabel('pixel value 0-255')
 
 % theres two ways to compute the 11 point moving average filter
 % convolution way

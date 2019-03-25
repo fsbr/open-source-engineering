@@ -1,0 +1,64 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Thomas Fuller}
+\title{Nulling Filter}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+
+
+\begin{document}
+\maketitle
+\section*{Introduction}
+In this lab we're going to be developing a nulling filter to filter out noise in a given black and white image.  A nulling filter
+\\ \\
+\textbf{NOTE:} In this particular image a white pixel takes on a value of 255, and a black pixel takes on a value of 0.  
+\\ \\
+\textbf{NOTE:} In MATLAB, the datatype unit8 obeys integer division rules, so for example if a=4 is of the unsigned integer datatype, then a/2 returns a value of 2, but rounding occurs if a would be a decimal, so a/3 returns a value of 1, even though as humans if we divided 4/3 we get a=1.3333.  To fix this you can cast values to "double" as you see appropriate for this lab.  
+\\ \\
+\section*{Part 1}
+The lab instructions use the MATLAB commands but you're definitely welcome to use the Python opencv equivalents if you want to be a boss. 
+1.  Using the matlab \texttt{imread}, and \texttt{imshow} commands, read in the attached image ``homework.png".  We will use the \texttt{imshow} command with the open and square bracket option to automatically scale our image throughout this lab.  
+\\ \\
+2. Create a figure with two subplots.  The first subplot should contain the values of each pixel in the 99th ROW of the image, and have labels ``index (n)" and ``pixel value" on the x and y axis respectively.  The second subplot should be a graph of the ``index (n)" on the horizontal axis, but the y axis will be the data in the 99th row passed through an 11 point moving average filter.
+\\ \\
+3.  \textbf{How to achieve the 11 point moving average filter:}  You can implement this filter by convolving (\texttt{conv(a,b)}) the data in the 99th row of the homework image with the coefficients $b_{k} = \frac{1}{L}\{1 1 1 ... 1 1 1\}$, which is a vector of ones, of length L, and $L=11$.  
+
+\section*{Part 2}
+Repeat the steps of part 1, except implement the running average filter over the entire image, and display the output on a figure with two subplots, showing what the image looked like before and also after.  
+
+\section*{Part 3}
+%%%% i think i need to like vary the data somewhat.
+I've corrupted the image such that for each row in the image, the corrupted output is
+\begin{equation}
+x_{1}[n] = 128 + 128\cos(\frac{2 \pi}{11}n) + x[n]
+\end{equation}
+\\ \\
+1.  Using the \texttt{diric} command in matlab, or the equation
+\begin{equation*}
+D_{L}(\hat{\omega}) = \frac{1}{L}\frac{\sin(L \hat{\omega}/2)}{\sin(\hat{\omega}/2)}
+\end{equation*}
+Plot the magnitude part of the frequency response, with ``normalized radian frequency" on the horizontal axis, and $|H(e^{j \hat{\omega}})|$ on the vertical axis.
+
+\section*{Part 4}
+Pass the filter over the entire corrupted image and explain why it works, using the plot of the Dirichlet function in part 3 as a reference. Also explain some of the side effects of this filter.  
+
+\section*{Part 5}
+Answer the following questions:
+\\ \\
+1.  What is the relationship between $\hat{w}$ and $w$?
+\\ \\
+2.  State the Nyquist Sample theorem and explain why sample rate is not a factor in this particular example. Also state when sample rate WOULD be a factor.
+
+\section*{Inspirational Quote}
+You can do it!
+\end{document}

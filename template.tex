@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Thomas Fuller}
+\title{Hidden Figures}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+
+
+\begin{document}
+\maketitle
+\section*{Introduction}
+In this lab I'll try to show you an application of the Z transform to solving continuous time differential equations through discretization. We're going to be using forward difference (Euler's Method), and also the backwards difference method to perform the discritization and obtain the solution of a first order differential equation.  For your entertainment, here's the scene from the Hidden Figures movie where Katherine and racist Sheldon Cooper wax poetic about the Euler's method. 
+\href{https://www.youtube.com/watch?v=v-pbGAts_Fg}{Euler's Method}
+\section*{The Stars of Our Show}
+The methods we're going to use today are the forward difference equation given below, let `` $\Delta_{x}[n]$" be a discrete approximation of the derivative. 
+\begin{equation}
+\frac{dy}{dt} \approx \Delta_{f}y[n] = \frac{y[n+1] - y[n]}{T}
+\end{equation}
+We will also employ the backwards difference equation given below
+\begin{equation}
+\frac{dy}{dt} \approx \Delta_{b}y[n] = \frac{y[n] - y[n-1]}{T}
+\end{equation}
+Given below is the equation we'd like to discretize and solve numerically.  We'll also use the Z transform to determine a step size which will yield a stable result for each differentiation method.
+\begin{equation}
+\frac{dy}{dt} +ky = x(t)  
+\end{equation}
+This equation has the initial condition $y(t=0) = 0$.  
+\section*{Analysis}
+\subsection*{Step 1: Forwards Difference}
+For the terms $y(t)$, and $x(t)$, it is sufficient to substitute in $y[n]$ and $x[n]$ at this time to stand in our equation.  We will also replace the derivative term $\frac{dy}{dt}$ with the forward difference equation. Please write the resulting discrete time equation.
+\subsection*{Step 2: A pesky T in our denominator}
+For the reason that we don't really want to deal with fractions, and also that it will provide a later insight into the stability of our numerical solution, let's multiply both sides of the equation from Step 1 by T.  Write that equation below. 
+\subsection*{Step 3: Y(z)}
+The time has come. Let's take the Z transform of this function, and solve it for $\frac{Y(z)}{X(z)}$.
+\subsection*{Step 4: Pole Location}
+Express the pole location.  Leave everything in a variable form.  When is the discrete system stable? Assume K is a positive constant.
+\subsection*{Step 1a, 2a, 3a, ...: Backwards Difference}
+Let's do the same steps to determine the pole location of the discrete time system using the backwards difference equation instead.  We'll refer to these steps in our lab as Step 1a, Step 2a etc. It may take a little more love to coax the pole location out for this one but you will get it.
+\section*{Simulation}
+The solution of
+\begin{equation}
+\frac{dy}{dt} + ky = 0; 
+\end{equation}
+With the initial condition that 
+\begin{equation}
+y(0) =1
+\end{equation}
+is
+\begin{equation}
+y(t) = e^{-kt}
+\end{equation}
+\subsection*{Step 5: Z.T.F. Table}
+Use the Z transform table to verify that the solution to the forward difference equation is
+\begin{equation}
+y[n] = (1-kT)^{n}
+\end{equation}
+I'll just tell you that the closed form solution for the backwards difference equation is 
+\begin{equation}
+y[n] = (1+kT)^{-n}
+\end{equation}
+Overall I just want you to have some idea where this process is coming from.
+\subsection*{Step 6: Continuous Time Function}
+Plot $e^{-kt}$ from $t=0$ to $t=11$ seconds, and use an interval of $1(10)^{-3}$ seconds. \textbf{For all upcoming simulations, we will set k = 1}. 
+\subsection*{Step 7: Comparison Plot}
+Generate the following plot.  Use the subplot() command to achieve this goal.  In your lab report, show calculations that verify the pole location that I've given. The blue line should be the plot of $e^{-1t}$ from Step 6.  Each red line is the approximation of the given forward (eqn 7) or backwards (eqn 8) difference equation with the given value of T.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.60]{fig1.png}
+\caption{Comparison of Forward and Backward Difference for varying T}
+\label{f:datarates}
+\end{figure}
+\subsection*{Step 8: Detailed Response}
+Please state detailed reasons explaining why you'd prefer to use one method or the other to approximate the solution to this differential equation.
+\subsection*{Step 9: For Fun Not for Credit}
+Watch the video clip linked in the first paragraph of this document.  Then read the first 1 sentence of Leonhard Euler's Wikipedia page.  In your opinion, was racist Sheldon's description of Euler's method accurate?
+
+
+\end{document}

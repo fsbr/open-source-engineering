@@ -1,0 +1,1 @@
+It looks like fspecial 'unsharp' argument is not recorded in matlab documentation btw.
