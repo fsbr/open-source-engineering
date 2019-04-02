@@ -1,0 +1,61 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Thomas Fuller}
+\title{Enrichment Problems}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\begin{document}
+\maketitle
+\section*{Introduction}
+I want to give you guy some problems that help in our fundamental understanding of discrete time systesm.
+\section*{FIR Filter}
+An LTI system has a frequency response
+\begin{equation*}
+H(e^{j\hat{\omega}} = (1 -e^{j\pi/2}e^{-j\omega})(1 -e^{-j\pi/2}e^{-j\omega})(1 +e^{-j\omega})
+\end{equation*}
+The input to the system is 
+\begin{equation*}
+x[n] = 5 + 20\cos(0.5 \pi n + 0.25 \pi) + 10\delta[n-3]
+\end{equation*} 
+Find the output of the system
+
+\section*{Another one}
+An LTI system has the difference equation
+\begin{equation*}
+y[n] = -x[n] + 2x[n-2] - x[n-4]
+\end{equation*}
+I. Find the impulse response h[n]  and plot it
+\\ \\
+II. Determine an equation for the frequency response $H(e^{j\hat{\omega}})$ and express it in the form
+\begin{equation*}
+R(e^{j\hat{\omega}})e^{-j \hat{\omega}n_{0}}
+\end{equation*}
+where $n_{0}$ is an integer.
+\section*{Sample and Reconstruct}
+The signal $x(t)$ is to be reconstructed by directly putting an ideal continuous to discrete converter in cascade with an ideal digital to discrete converter, each samples at a rate of $f_{s} = 500$(samples/sec). $x(t)$ is defined as follows. 
+\begin{equation*}
+x(t) = 5\cos(200 \pi t) + 10 \cos(800 \pi t + \frac{\pi}{3}) + 2\cos(2200 \pi t + \frac{\pi}{6})
+\\ \\
+\end{equation*}
+\\ \\
+I.  Draw the block diagram of the entire process
+\\ \\
+II.  Determine the output function $y(t)$.  
+\section*{Discrete Fourier Transform}
+Find the N point DFT of $u = [\sin(ja)]_{j=0}^{N-1}$, in which $N$ is  a positive integer and $a$ is a given complet number.  To avoid trivialities suppose $a$ is not an integer multiple of $\pi$. 
+\end{document}
+
+
+
+
+
+
